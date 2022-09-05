@@ -1,3 +1,5 @@
+[![Godot Version](https://img.shields.io/badge/Godot-4.x-green.svg)](https://shields.io/)
+
 # Version Checker
 A small plugin that checks if a newer version of the godot alpha is available. 
 
