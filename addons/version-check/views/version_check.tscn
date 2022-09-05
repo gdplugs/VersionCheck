@@ -1,0 +1,23 @@
+[gd_scene load_steps=2 format=3 uid="uid://csdu4qaewb4lm"]
+
+[ext_resource type="Script" path="res://addons/version-check/views/version_check.gd" id="1_qp010"]
+
+[node name="version_check" type="HBoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_qp010")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 2
+offset_right = 41.0
+offset_bottom = 360.0
+text = "vers"
+flat = true
+
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="request_completed" from="HTTPRequest" to="." method="_on_http_request_request_completed"]
