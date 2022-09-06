@@ -13,6 +13,7 @@ A small plugin that checks if a newer version of the godot alpha is available.
 ![example](example.png)
 
 The plugin does some very simple steps:
+
     * Checks the releases website
     * Parse the table for the releases
     * Checks if your installed version is the newest one
