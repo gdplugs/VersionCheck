@@ -18,6 +18,6 @@ The plugin does some very simple steps:
     * Parse the table for the releases
     * Checks if your installed version is the newest one
 
-### Note:
+### 🗒️ Note:
 I have no knowledge how the future distribution of the editor will be handled. If there will be a "beta" subfolder in the future or if the alphas will be archived...
 So this plugin will break at some point in the future. 
