@@ -25,9 +25,9 @@ func load_data():
 	
 func _on_http_request_request_completed(result, response_code, headers, body:PackedByteArray):
 	var version_numbers = parse_body_to_versions(body)
-	var current_alpha = Engine.get_version_info().status.replace("alpha", "").to_int()
+	var current_beta = Engine.get_version_info().status.replace("beta", "").to_int()
 	
-	if current_alpha == version_numbers.max():
+	if current_beta == version_numbers.max():
 		set_to_valid()
 	else:
 		set_to_invalid(version_numbers.max())
@@ -45,10 +45,10 @@ func parse_body_to_versions(body):
 				current_element = parser.get_node_name()
 			XMLParser.NODE_TEXT:
 				if current_element == "a" and not block_from_list(parser.get_node_data()):
-					version_numbers.append((parser.get_node_data().replace("alpha", "")).to_int())
+					version_numbers.append((parser.get_node_data().replace("beta", "")).to_int())
 					
 	return version_numbers
 
 func block_from_list(item):
-	var listed = ["Parent Directory", "pre-alpha", "/"]
+	var listed = ["Parent Directory", "beta", "/"]
 	return listed.has(item)
