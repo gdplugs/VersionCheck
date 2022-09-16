@@ -1,7 +1,7 @@
 [![Godot Version](https://img.shields.io/badge/Godot-4.x-green.svg)](https://shields.io/)
 
 # Version Checker
-A small plugin that checks if a newer version of the godot alpha is available. 
+A small plugin that checks if a newer version of the godot beta is available. 
 
 # 🧪 Installation
 
@@ -19,5 +19,5 @@ The plugin does some very simple steps:
     * Checks if your installed version is the newest one
 
 ### 🗒️ Note:
-I have no knowledge how the future distribution of the editor will be handled. If there will be a "beta" subfolder in the future or if the alphas will be archived...
+I have no knowledge how the future distribution of the editor will be handled. If there will be a "beta" subfolder in the future or if the betas will be archived...
 So this plugin will break at some point in the future. 
