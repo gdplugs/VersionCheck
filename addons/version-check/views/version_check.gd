@@ -17,16 +17,19 @@ func set_to_loading():
 	button.text = ""
 
 func _on_button_pressed():
+	print("Reached Milestone 1")
 	load_data()
 
 func load_data():
+	print("reached milestone 2")
 	set_to_loading()
 	$HTTPRequest.request("https://downloads.tuxfamily.org/godotengine/4.0/")
 	
 func _on_http_request_request_completed(result, response_code, headers, body:PackedByteArray):
 	var version_numbers = parse_body_to_versions(body)
-	var current_beta = Engine.get_version_info().status.replace("beta", "").to_int()
-	if current_beta == version_numbers.max():
+	print(Engine.get_version_info())
+	var current_rc = Engine.get_version_info().status.replace("rc", "").to_int()
+	if current_rc == version_numbers.max():
 		set_to_valid()
 	else:
 		set_to_invalid(version_numbers.max())
@@ -44,8 +47,8 @@ func parse_body_to_versions(body):
 				current_element = parser.get_node_name()
 			XMLParser.NODE_TEXT:
 				if current_element == "a" and not block_from_list(parser.get_node_data()):
-					if parser.get_node_data().begins_with("beta"):
-						version_numbers.append((parser.get_node_data().replace("beta", "")).to_int())
+					if parser.get_node_data().begins_with("rc"):
+						version_numbers.append((parser.get_node_data().replace("rc", "")).to_int())
 					
 	return version_numbers
 
