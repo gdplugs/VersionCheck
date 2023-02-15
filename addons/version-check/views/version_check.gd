@@ -17,17 +17,14 @@ func set_to_loading():
 	button.text = ""
 
 func _on_button_pressed():
-	print("Reached Milestone 1")
 	load_data()
 
 func load_data():
-	print("reached milestone 2")
 	set_to_loading()
 	$HTTPRequest.request("https://downloads.tuxfamily.org/godotengine/4.0/")
 	
 func _on_http_request_request_completed(result, response_code, headers, body:PackedByteArray):
 	var version_numbers = parse_body_to_versions(body)
-	print(Engine.get_version_info())
 	var current_rc = Engine.get_version_info().status.replace("rc", "").to_int()
 	if current_rc == version_numbers.max():
 		set_to_valid()
