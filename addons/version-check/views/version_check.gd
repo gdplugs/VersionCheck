@@ -25,11 +25,17 @@ func load_data():
 	
 func _on_http_request_request_completed(result, response_code, headers, body:PackedByteArray):
 	var version_numbers = parse_body_to_versions(body)
-	var current_rc = Engine.get_version_info().status.replace("rc", "").to_int()
-	if current_rc == version_numbers.max():
-		set_to_valid()
+	if version_numbers == "Stable":
+		if Engine.get_version_info().status() == 'stable':
+			set_to_valid()
+		else:
+			set_to_invalid()
 	else:
-		set_to_invalid(version_numbers.max())
+		var current_rc = Engine.get_version_info().status.replace("rc", "").to_int()
+		if current_rc == version_numbers.max():
+			set_to_valid()
+		else:
+			set_to_invalid(version_numbers.max())
 	
 func parse_body_to_versions(body):
 	var version_numbers = []
@@ -46,7 +52,8 @@ func parse_body_to_versions(body):
 				if current_element == "a" and not block_from_list(parser.get_node_data()):
 					if parser.get_node_data().begins_with("rc"):
 						version_numbers.append((parser.get_node_data().replace("rc", "")).to_int())
-					
+					elif parser.get_node_data().begins_with("Godot_v4.0-stable"):
+						return "Stable"
 	return version_numbers
 
 func block_from_list(item):
